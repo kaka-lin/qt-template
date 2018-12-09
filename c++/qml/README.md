@@ -2,8 +2,8 @@
 
 ## Require
 
-- CMake & Ninja
 - Qt5.10+
+- CMake & Ninja
 
 ## build
 
