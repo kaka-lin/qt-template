@@ -12,8 +12,8 @@ def run(app, dir_name, mode):
     context = engine.rootContext()
 
     if mode == "prod":
-        engine.addImportPath('qrc:///resources')
-        engine.load(QUrl('qrc:/resources/main.qml'))
+        engine.addImportPath('qrc:/')
+        engine.load(QUrl('qrc:/main.qml'))
     else:
         engine.addImportPath(os.path.join(dir_name, "src/resources"))
         engine.load(QUrl(os.path.join(dir_name, "src/resources/main.qml")))

@@ -2,7 +2,7 @@
 
 # Resource object code
 #
-# Created: 週三 11月 14 17:06:58 2018
+# Created: Sun Dec 9 17:03:20 2018
 #      by: The Resource Compiler for PySide2 (Qt v5.11.2)
 #
 # WARNING! All changes made in this file will be lost!
@@ -10,6 +10,91 @@
 from PySide2 import QtCore
 
 qt_resource_data = b"\
+\x00\x00\x05.\
+i\
+mport QtQuick 2.\
+8\x0aimport QtQuick\
+.Layouts 1.3\x0a\x0aRe\
+ctangle {\x0a    id\
+: root\x0a    ancho\
+rs.fill: parent\x0a\
+\x0a    property va\
+riant internalMo\
+del\x0a    signal r\
+owChanged\x0a\x0a    o\
+nRowChanged: {\x0a \
+       //listVie\
+w.positionViewAt\
+End();\x0a        l\
+istView.position\
+ViewAtIndex(list\
+View.count - 1, \
+ListView.Beginni\
+ng)\x0a    }\x0a\x0a    L\
+istView {\x0a      \
+  id: listView\x0a \
+       anchors.f\
+ill: parent\x0a    \
+    contentWidth\
+: 320\x0a        cl\
+ip: true\x0a\x0a      \
+  model: parent.\
+internalModel\x0a\x0a \
+       delegate:\
+ listDelegate\x0a  \
+  }\x0a\x0a    Compone\
+nt {\x0a        id:\
+ listDelegate\x0a\x0a \
+       Rectangle\
+ {\x0a            w\
+idth: root.width\
+\x0a            hei\
+ght: 40\x0a        \
+    color: index\
+ % 2 == 0 ? \x22whi\
+te\x22 : \x22lightgray\
+\x22\x0a\x0a            G\
+ridLayout {\x0a    \
+            anch\
+ors.fill: parent\
+\x0a               \
+ columns: 2\x0a    \
+            colu\
+mnSpacing: (pare\
+nt.width - itemT\
+ext.contentWidth\
+ - dataText.cont\
+entWidth) - 10\x0a\x0a\
+                \
+Text {\x0a         \
+           id: i\
+temText\x0a        \
+            text\
+: model.item\x0a   \
+                \
+ font.bold: true\
+\x0a               \
+     font.pixelS\
+ize: 20\x0a        \
+        }\x0a\x0a     \
+           Text \
+{\x0a              \
+      id: dataTe\
+xt\x0a             \
+       text: mod\
+el.data\x0a        \
+            font\
+.pixelSize: 20\x0a \
+                \
+   color: \x22red\x22\x0a\
+                \
+}\x0a            }\x0a\
+        }\x0a    }\x0a\
+\x0a    Component.o\
+nCompleted: {\x0a  \
+      listView.p\
+ositionViewAtEnd\
+();\x0a    }\x0a}\x0a\x0a\
 \x00\x00\x09!\
 i\
 mport QtQuick 2.\
@@ -159,138 +244,6 @@ on: 5000\x0a       \
 imation.Infinite\
 \x0a    }\x0a    */\x0a}\x0a\
 \
-\x00\x00\x05.\
-i\
-mport QtQuick 2.\
-8\x0aimport QtQuick\
-.Layouts 1.3\x0a\x0aRe\
-ctangle {\x0a    id\
-: root\x0a    ancho\
-rs.fill: parent\x0a\
-\x0a    property va\
-riant internalMo\
-del\x0a    signal r\
-owChanged\x0a\x0a    o\
-nRowChanged: {\x0a \
-       //listVie\
-w.positionViewAt\
-End();\x0a        l\
-istView.position\
-ViewAtIndex(list\
-View.count - 1, \
-ListView.Beginni\
-ng)\x0a    }\x0a\x0a    L\
-istView {\x0a      \
-  id: listView\x0a \
-       anchors.f\
-ill: parent\x0a    \
-    contentWidth\
-: 320\x0a        cl\
-ip: true\x0a\x0a      \
-  model: parent.\
-internalModel\x0a\x0a \
-       delegate:\
- listDelegate\x0a  \
-  }\x0a\x0a    Compone\
-nt {\x0a        id:\
- listDelegate\x0a\x0a \
-       Rectangle\
- {\x0a            w\
-idth: root.width\
-\x0a            hei\
-ght: 40\x0a        \
-    color: index\
- % 2 == 0 ? \x22whi\
-te\x22 : \x22lightgray\
-\x22\x0a\x0a            G\
-ridLayout {\x0a    \
-            anch\
-ors.fill: parent\
-\x0a               \
- columns: 2\x0a    \
-            colu\
-mnSpacing: (pare\
-nt.width - itemT\
-ext.contentWidth\
- - dataText.cont\
-entWidth) - 10\x0a\x0a\
-                \
-Text {\x0a         \
-           id: i\
-temText\x0a        \
-            text\
-: model.item\x0a   \
-                \
- font.bold: true\
-\x0a               \
-     font.pixelS\
-ize: 20\x0a        \
-        }\x0a\x0a     \
-           Text \
-{\x0a              \
-      id: dataTe\
-xt\x0a             \
-       text: mod\
-el.data\x0a        \
-            font\
-.pixelSize: 20\x0a \
-                \
-   color: \x22red\x22\x0a\
-                \
-}\x0a            }\x0a\
-        }\x0a    }\x0a\
-\x0a    Component.o\
-nCompleted: {\x0a  \
-      listView.p\
-ositionViewAtEnd\
-();\x0a    }\x0a}\x0a\x0a\
-\x00\x00\x00\xa5\
-m\
-odule components\
-.common\x0a\x0aCircleP\
-rogress 1.0 Circ\
-leProgress.qml\x0aC\
-lock          1.\
-0 Clock.qml\x0aKaka\
-Progress   1.0 K\
-akaProgress.qml\x0a\
-KakaListView   1\
-.0 KakaListView.\
-qml\x0a\
-\x00\x00\x01\xf9\
-i\
-mport QtQuick 2.\
-0\x0a\x0aRectangle {\x0a \
-   width: 100\x0a  \
-  height: 20\x0a\x0a  \
-  property real \
-currentTimestamp\
-\x0a\x0a    function u\
-pdateTime() {\x0a  \
-      var now = \
-new Date();\x0a    \
-    currentTimes\
-tamp = now.getTi\
-me();\x0a    }\x0a\x0a   \
- Timer {\x0a       \
- interval: 1000\x0a\
-        repeat: \
-true\x0a        run\
-ning: true\x0a     \
-   onTriggered: \
-{ updateTime(); \
-}\x0a    }\x0a\x0a    Tex\
-t {\x0a        text\
-: Qt.formatTime \
-(new Date (curre\
-ntTimestamp + (0\
- * 60000)), \x22A h\
-h:mm\x22)\x0a        f\
-ont.pixelSize: 1\
-8\x0a    }\x0a\x0a    Com\
-ponent.onComplet\
-ed: { updateTime\
-(); }\x0a}\x0a\
 \x00\x00\x0e\x0c\
 i\
 mport QtQuick 2.\
@@ -518,13 +471,56 @@ t.value + root.t\
 ext\x0a        colo\
 r: root.textColo\
 r\x0a\x0a    }\x0a}\x0a\
+\x00\x00\x00\xa5\
+m\
+odule components\
+.common\x0a\x0aCircleP\
+rogress 1.0 Circ\
+leProgress.qml\x0aC\
+lock          1.\
+0 Clock.qml\x0aKaka\
+Progress   1.0 K\
+akaProgress.qml\x0a\
+KakaListView   1\
+.0 KakaListView.\
+qml\x0a\
+\x00\x00\x01\xf9\
+i\
+mport QtQuick 2.\
+0\x0a\x0aRectangle {\x0a \
+   width: 100\x0a  \
+  height: 20\x0a\x0a  \
+  property real \
+currentTimestamp\
+\x0a\x0a    function u\
+pdateTime() {\x0a  \
+      var now = \
+new Date();\x0a    \
+    currentTimes\
+tamp = now.getTi\
+me();\x0a    }\x0a\x0a   \
+ Timer {\x0a       \
+ interval: 1000\x0a\
+        repeat: \
+true\x0a        run\
+ning: true\x0a     \
+   onTriggered: \
+{ updateTime(); \
+}\x0a    }\x0a\x0a    Tex\
+t {\x0a        text\
+: Qt.formatTime \
+(new Date (curre\
+ntTimestamp + (0\
+ * 60000)), \x22A h\
+h:mm\x22)\x0a        f\
+ont.pixelSize: 1\
+8\x0a    }\x0a\x0a    Com\
+ponent.onComplet\
+ed: { updateTime\
+(); }\x0a}\x0a\
 "
 
 qt_resource_name = b"\
-\x00\x09\
-\x0alxC\
-\x00r\
-\x00e\x00s\x00o\x00u\x00r\x00c\x00e\x00s\
 \x00\x0a\
 \x07j\x093\
 \x00c\
@@ -534,13 +530,18 @@ qt_resource_name = b"\
 \x00c\
 \x00o\x00m\x00m\x00o\x00n\
 \x00\x10\
-\x00D\x8d|\
-\x00K\
-\x00a\x00k\x00a\x00P\x00r\x00o\x00g\x00r\x00e\x00s\x00s\x00.\x00q\x00m\x00l\
-\x00\x10\
 \x03\xbfg\xfc\
 \x00K\
 \x00a\x00k\x00a\x00L\x00i\x00s\x00t\x00V\x00i\x00e\x00w\x00.\x00q\x00m\x00l\
+\x00\x10\
+\x00D\x8d|\
+\x00K\
+\x00a\x00k\x00a\x00P\x00r\x00o\x00g\x00r\x00e\x00s\x00s\x00.\x00q\x00m\x00l\
+\x00\x12\
+\x0a\xd6\xc5\xbc\
+\x00C\
+\x00i\x00r\x00c\x00l\x00e\x00P\x00r\x00o\x00g\x00r\x00e\x00s\x00s\x00.\x00q\x00m\
+\x00l\
 \x00\x06\
 \x07\x84+\x02\
 \x00q\
@@ -549,23 +550,17 @@ qt_resource_name = b"\
 \x05\x9e\xc4\x5c\
 \x00C\
 \x00l\x00o\x00c\x00k\x00.\x00q\x00m\x00l\
-\x00\x12\
-\x0a\xd6\xc5\xbc\
-\x00C\
-\x00i\x00r\x00c\x00l\x00e\x00P\x00r\x00o\x00g\x00r\x00e\x00s\x00s\x00.\x00q\x00m\
-\x00l\
 "
 
 qt_resource_struct = b"\
 \x00\x00\x00\x00\x00\x02\x00\x00\x00\x01\x00\x00\x00\x01\
 \x00\x00\x00\x00\x00\x02\x00\x00\x00\x01\x00\x00\x00\x02\
-\x00\x00\x00\x18\x00\x02\x00\x00\x00\x01\x00\x00\x00\x03\
-\x00\x00\x002\x00\x02\x00\x00\x00\x05\x00\x00\x00\x04\
-\x00\x00\x00D\x00\x00\x00\x00\x00\x01\x00\x00\x00\x00\
-\x00\x00\x00j\x00\x00\x00\x00\x00\x01\x00\x00\x09%\
-\x00\x00\x00\xa2\x00\x00\x00\x00\x00\x01\x00\x00\x0f\x00\
-\x00\x00\x00\x90\x00\x00\x00\x00\x00\x01\x00\x00\x0eW\
-\x00\x00\x00\xba\x00\x00\x00\x00\x00\x01\x00\x00\x10\xfd\
+\x00\x00\x00\x1a\x00\x02\x00\x00\x00\x05\x00\x00\x00\x03\
+\x00\x00\x00R\x00\x00\x00\x00\x00\x01\x00\x00\x052\
+\x00\x00\x00,\x00\x00\x00\x00\x00\x01\x00\x00\x00\x00\
+\x00\x00\x00\xb4\x00\x00\x00\x00\x00\x01\x00\x00\x1d\x10\
+\x00\x00\x00\xa2\x00\x00\x00\x00\x00\x01\x00\x00\x1cg\
+\x00\x00\x00x\x00\x00\x00\x00\x00\x01\x00\x00\x0eW\
 "
 
 def qInitResources():

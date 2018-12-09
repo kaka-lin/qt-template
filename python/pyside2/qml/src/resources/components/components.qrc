@@ -1,5 +1,5 @@
 <!DOCTYPE RCC><RCC version="1.0">
-    <qresource prefix="/resources/components">
+    <qresource prefix="/components">
         <file>common/CircleProgress.qml</file>
         <file>common/Clock.qml</file>
         <file>common/KakaProgress.qml</file>
