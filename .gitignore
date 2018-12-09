@@ -17,3 +17,6 @@ __pycache__
 
 # QML
 *.qmlc
+
+# cmake
+build/
