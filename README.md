@@ -1,6 +1,8 @@
 # Qt Template
 
-This is template that can rapid to build ```Qt/QML``` application 
+This is template that can rapid to build ```Qt/QML``` application.
+
+You can just copy you prefer program language's folder and start to code and build and run.
 
 ## Usage
 
@@ -12,7 +14,7 @@ $ git clone https://github.com/kaka-lin/qt-template.git
 2. Choosing you prefer program language, ex: ```c++```
 
 ```bash
-$ cd c++/qml
+$ cp -r c++/qml <Your path>
 ```
 
 3. Buinding application
