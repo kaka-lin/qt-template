@@ -1,4 +1,4 @@
-# QML Template
+# Qt Template
 
 ## Usage
 
