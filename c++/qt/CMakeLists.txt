@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.1)
 
-project(qml-template)
+project(qt_template)
 
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -18,7 +18,8 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 
 # Find Qt5 libraies
-find_package(Qt5 COMPONENTS Core Qml Quick REQUIRED)
+find_package(Qt5 REQUIRED COMPONENTS
+    Core Gui Widgets)
 
 # Source files
 FILE(GLOB_RECURSE SOURCE_FILES
@@ -26,18 +27,13 @@ FILE(GLOB_RECURSE SOURCE_FILES
     "${CMAKE_SOURCE_DIR}/src/*.c"
 )
 
-# Qt resources
-FILE(GLOB_RECURSE RESOURCES
-    "${CMAKE_SOURCE_DIR}/src/*.qrc"
-)
-
 add_definitions(-DFLUID_LOCAL)
 # Tell CMake to create the xxx executable
-add_executable(${PROJECT_NAME} ${SOURCE_FILES} ${RESOURCES})
+add_executable(${PROJECT_NAME} ${SOURCE_FILES})
 
 # Use module from Qt5
 target_compile_definitions(${PROJECT_NAME} PRIVATE $<$<OR:$<CONFIG:Debug>,$<CONFIG:RelWithDebInfo>>:QT_QML_DEBUG>)
 target_link_libraries(${PROJECT_NAME}
-    PRIVATE Qt5::Core Qt5::Qml Qt5::Quick)
+    PRIVATE Qt5::Core Qt5::Widgets)
 
 install(TARGETS ${PROJECT_NAME} DESTINATION bin)
