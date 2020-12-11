@@ -1,0 +1,12 @@
+<!DOCTYPE RCC><RCC version="0.1">
+    <qresource prefix="/resources">
+        <file>main.qml</file>
+        
+        <file>tabs/Tab1.qml</file>
+        <file>tabs/Tab2.qml</file>
+
+        <file>images/about.ico</file>
+        <file>images/exit.ico</file>
+        <file>images/newFile.ico</file>
+    </qresource>
+</RCC>
