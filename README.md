@@ -52,6 +52,17 @@ $ docker run --rm -it \
     kakalin/qt:5.12.0
 ```
 
+## Templates
+
+### QML Template
+
+![](./images/qml-template.png)
+
+
+### QML/QMultimedia Template
+
+![](./images/qml-qmultimedia-template.png)
+
 ## Examples
 
 Applications that build with `Qt`, you can reference projects as below,
