@@ -80,11 +80,17 @@ ENV PATH="/usr/local/qt5/bin:$PATH"
 ENV LD_LIBRARY_PATH="/usr/local/qt5/lib:$LD_LIBRARY_PATH"
 
 # nvidia-container-runtime
-# can run OpenGL in Container
+## can run OpenGL in Container
 ENV NVIDIA_VISIBLE_DEVICES \
     ${NVIDIA_VISIBLE_DEVICES:-all}
 ENV NVIDIA_DRIVER_CAPABILITIES \
     ${NVIDIA_DRIVER_CAPABILITIES:+$NVIDIA_DRIVER_CAPABILITIES,}graphics
+
+# OpenGL
+## This fix: libGL error: No matching fbConfigs or visuals found
+ENV LIBGL_ALWAYS_INDIRECT 1
+## To fix: QGLXContext: Failed to create dummy context
+ENV QT_QUICK_BACKEND software
 
 # Add group & user + sudo
 RUN groupadd -r user && \

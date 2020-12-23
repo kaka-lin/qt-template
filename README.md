@@ -25,32 +25,7 @@ $ cp -r c++/qml <Your path>
 
 ## Run with Docker (Optional)
 
-### 1. Build Qt Container Image
-
-```bash
-$ docker build --rm -t kakalin/qt:5.12.0 .
-```
-
-### 2. Run with Qt Container Image
-
-```bash
-# Expose the X server on the host
-$ xhost +local:docker
-```
-
-```bash
-$ docker run --rm -it \
-    --gpus all \
-    -e DISPLAY=$DISPLAY \
-    -e QT_X11_NO_MITSHM=1 \
-    --device /dev/dri \
-    --device /dev/snd \
-    --volume="/tmp:/tmp" \
-    --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" \
-    --volume="$PWD:/home/user/qt-template" \
-    --privileged \
-    kakalin/qt:5.12.0
-```
+Please see the document at [docker folder](docker/README.md)
 
 ## Templates
 
