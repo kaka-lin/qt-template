@@ -42,6 +42,9 @@ Please see the document at [docker folder](docker/README.md)
 
 Applications that build with `Qt`, you can reference projects as below,
 
+- Qt5/QML
+    - [Network Configuration Tool](https://github.com/kaka-lin/network-configuration-tool)
+
 - PyQt5
 
     - [serialport-gui](https://github.com/kaka-lin/serialport-gui)

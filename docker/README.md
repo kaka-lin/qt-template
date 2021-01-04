@@ -1,14 +1,20 @@
 # Qt/QML Container Image
 
-## Build
+## Download image form Docker Hub
 
+```bash
+$ docker pull kakalin/qt:5.12.0
 ```
+
+## Build the image (Optional)
+
+```bash
 $ docker build --rm -t kakalin/qt:5.12.0 .
 ```
 
-## Push to Docker Hub
+### Push to Docker Hub
 
-```
+```bash
 $ docker login
 $ docker push kakalin/qt:5.12.0
 ```
