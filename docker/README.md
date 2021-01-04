@@ -86,7 +86,7 @@ Reference: [X11 in docker on macOS](https://gist.github.com/cschiewek/246a244ba2
 
     ```bash
     # Expose the X server on the host
-    $ xhost +local:docker
+    $ xhost +localhost
     ```
 
     ```bash
