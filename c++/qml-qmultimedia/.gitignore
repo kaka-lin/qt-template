@@ -9,7 +9,7 @@
 venv/
 .venv/
 
-# python 
+# python
 *.pyc
 *.pro
 *~
@@ -20,3 +20,4 @@ __pycache__
 
 # cmake
 build/
+qmultimedia-template

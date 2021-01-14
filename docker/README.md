@@ -43,8 +43,7 @@ you should in the root path of the  project,
         --gpus all \
         -e DISPLAY=$DISPLAY \
         -e QT_X11_NO_MITSHM=1 \
-        --volume="/tmp:/tmp" \
-        --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" \
+        --volume="/tmp/.X11-unix:/tmp/.X11-unix" \
         --volume="$PWD:/home/user/qt-template" \
         --privileged \
         kakalin/qt:5.12.0
@@ -56,8 +55,7 @@ you should in the root path of the  project,
     $ docker run --rm -it \
         -e DISPLAY=$DISPLAY \
         -e QT_X11_NO_MITSHM=1 \
-        --volume="/tmp:/tmp" \
-        --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" \
+        --volume="/tmp/.X11-unix:/tmp/.X11-unix" \
         --volume="$PWD:/home/user/qt-template" \
         --privileged \
         kakalin/qt:5.12.0

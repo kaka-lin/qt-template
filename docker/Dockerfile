@@ -5,16 +5,12 @@ LABEL maintainer="kaka <vn503024@gmail.com>"
 # set noninteractive installation
 RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
-    tzdata \
-    locales \
-    git \
-    wget \
-    curl \
-    cmake ninja-build g++ \
-    sudo \
+    tzdata locales\
+    git wget curl\
+    build-essential cmake ninja-build g++ \
+    sudo apt-utils \
     pkg-config \
-    build-essential \
-    perl ruby \
+    perl ruby bison flex gperf \
     python-dev python3-dev \
     python-pip python3-pip \
     '^libxcb.*-dev'\
@@ -32,18 +28,22 @@ RUN apt-get update && \
     libgstreamer-plugins-base1.0-dev \
     libgstreamer-plugins-good1.0-dev \
     libgstreamer-plugins-bad1.0-dev \
-    libicu-dev libxslt-dev \
-    bison flex gperf
+    libicu-dev libxslt-dev
 
-RUN apt-get install -y \
+RUN apt-get install -y --no-install-recommends \
+    libgstreamer1.0-0 \
     gstreamer1.0-libav \
     gstreamer1.0-plugins-bad \
     gstreamer1.0-plugins-base \
-    gstreamer1.0-plugins-base-apps \
     gstreamer1.0-plugins-good \
     gstreamer1.0-plugins-ugly \
+    gstreamer1.0-libav \
+    gstreamer1.0-doc \
+    gstreamer1.0-tools \
+    libpulse-mainloop-glib0 \
     alsa-base \
-    alsa-utils
+    alsa-utils \
+    pulseaudio
 
 RUN apt -y autoremove && \
     apt -y autoclean && \
@@ -90,7 +90,7 @@ ENV NVIDIA_DRIVER_CAPABILITIES \
 ## This fix: libGL error: No matching fbConfigs or visuals found
 ENV LIBGL_ALWAYS_INDIRECT 1
 ## To fix: QGLXContext: Failed to create dummy context
-ENV QT_QUICK_BACKEND software
+#ENV QT_QUICK_BACKEND software
 
 # Add group & user + sudo
 RUN groupadd -r user && \
