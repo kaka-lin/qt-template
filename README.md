@@ -35,15 +35,12 @@ Please see the document at [docker folder](docker/README.md)
 ![](./images/qml-template.png)
 
 
-### QML/QMultimedia Template
-
-![](./images/qml-qmultimedia-template.png)
-
 ## Examples
 
 Applications that build with `Qt`, you can reference projects as below,
 
 - Qt5/QML
+    - [Qt Video Player](https://github.com/kaka-lin/qt-video-player)
     - [Network Configuration Tool](https://github.com/kaka-lin/network-configuration-tool)
 
 - PyQt5
