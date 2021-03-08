@@ -51,10 +51,10 @@ RUN apt -y autoremove && \
     rm -rf /var/lib/apt/lists/*
 
 # Set timezone
-RUN TZ=Asia/Taipei && \
-    ln -fs /usr/share/zoneinfo/$TZ /etc/localtime && \
-    echo $TZ > /etc/localtime && \
-    dpkg-reconfigure -f noninteractive tzdata
+ENV TZ=Asia/Taipei
+RUN ln -fs /usr/share/zoneinfo/$TZ /etc/localtime && \
+    echo $TZ > /etc/timezone
+RUN dpkg-reconfigure -f noninteractive tzdata
 
 # Set locale
 ENV LANG C.UTF-8
