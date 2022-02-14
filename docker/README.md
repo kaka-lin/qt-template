@@ -87,14 +87,19 @@ Reference: [X11 in docker on macOS](https://gist.github.com/cschiewek/246a244ba2
     $ xhost +localhost
     ```
 
+    Creating a bridge between a network socket with a TCP listener on port `6000` (the default port of the X window system) and the X window server on my OS X host.
+
+    ```
+    $ socat TCP-LISTEN:6000,reuseaddr,fork UNIX-CLIENT:\"$DISPLAY\"
+    ```
+
     ```bash
-    docker run --rm -it \
+    $ docker run --rm -it \
         -e DISPLAY=host.docker.internal:0 \
         -e QT_X11_NO_MITSHM=1 \
-        --volume="/tmp:/tmp" \
+        -e QT_QUICK_BACKEND=software \
         --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" \
         --volume="$PWD:/home/user/qt-template" \
-        --privileged \
         kakalin/qt:5.12.0
     ```
 
