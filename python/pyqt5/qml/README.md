@@ -8,7 +8,7 @@
 ## Usage
 
 ```bash
-python3 qt_template.py
+python3 qml_template.py
 ```
 
 ## Packaging
@@ -23,10 +23,10 @@ if you want to packing Python programs into ```stand-alone executables```
     $ pyrcc5 -o src/components.py src/resources/components/components.qrc
     ```
 
-2. Testing 
+2. Testing
 
     Add ```prod``` argument to run freeze mode
 
     ```bash
-    python3 qt_template.py prod
+    python3 qml_template.py prod
     ```
