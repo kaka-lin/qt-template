@@ -24,16 +24,49 @@ Applications that build with this `Qt Template`: [Examples](#examples)
 
     Follow the steps of each folder's ```README```
 
-## Run with Docker (Optional)
+## Running and showing the Templates
 
-Please see the document at [docker folder](docker/README.md)
+### 1. Run with Docker (Recommend)
 
-## Templates
+You can use the docker image that we already build, as below
 
-### QML Template
+```bash
+$ docker pull kakalin/qt:5.12.0
+```
+
+Or you can build it from scratch, please check the document in the [docker folder](docker/README.md).
+
+And then running with docker:
+
+```bash
+$ ./run.sh
+```
+
+### 2. Run with local Qt
+
+Please install Qt/QML on your local machine.
+
+### 3. Run the template
+
+Chose the version that you want to use.
+
+#####　QML
+
+```sh
+$ cd python/pyqt5/qml
+$ python3 qml_template.py
+```
 
 ![](./images/qml-template.png)
 
+##### QT
+
+```sh
+$ cd python/pyqt5/qt
+$ python3 main.py
+```
+
+![](./images/qt-template.png)
 
 ## Examples
 
