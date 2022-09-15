@@ -1,22 +1,21 @@
 # Qt/QML Container Image
 
-## Download image form Docker Hub
-
-```bash
-$ docker pull kakalin/qt:5.12.0
-```
+- Qt/QML: 5.12.0
+    - Support PyQt5
 
 ## Build the image (Optional)
 
 ```bash
-$ docker build --rm -t kakalin/qt:5.12.0 .
+# $ docker build --rm -t kakalin/qt:5.12.0 .
+$ ./build.sh
 ```
 
 ### Push to Docker Hub
 
 ```bash
 $ docker login
-$ docker push kakalin/qt:5.12.0
+# $ docker push kakalin/qt:5.12.0
+$ ./deploy.sh
 ```
 
 ## Run
@@ -118,3 +117,10 @@ Reference: [X11 in docker on macOS](https://gist.github.com/cschiewek/246a244ba2
     ```bash
     $ export QT_QUICK_BACKEND=software
     ```
+
+3. Miniconda install issue:
+    - Install Python3.8, `ModuleNotFoundError: No module named 'conda.cli.main_info'`
+
+        ```
+        comment `conda update -n base conda`
+        ```

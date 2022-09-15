@@ -10,9 +10,11 @@ RUN apt-get update && \
     build-essential cmake ninja-build g++ \
     sudo apt-utils \
     pkg-config \
-    perl ruby bison flex gperf \
+    perl \
     python-dev python3-dev \
     python-pip python3-pip \
+    libdbus-1-3 \
+    # Libxcb
     '^libxcb.*-dev'\
     libx11-xcb-dev \
     libglu1-mesa-dev \
@@ -20,16 +22,20 @@ RUN apt-get update && \
     libxi-dev \
     libxkbcommon-dev \
     libxkbcommon-x11-dev \
-    libdbus-1-3 \
+    # Qt WebKit\
+    ruby bison flex gperf \
+    libicu-dev libxslt-dev \
+    # Qt WebEngine
     libfontconfig1 libfontconfig1-dev libudev-dev \
-    mesa-common-dev libgl1-mesa-dev \
+    # Qt Multimedia
     libasound2-dev \
     libgstreamer1.0-dev \
     libgstreamer-plugins-base1.0-dev \
     libgstreamer-plugins-good1.0-dev \
     libgstreamer-plugins-bad1.0-dev \
-    libicu-dev libxslt-dev
+    mesa-common-dev libgl1-mesa-dev
 
+# OpenGL support
 RUN apt-get install -y --no-install-recommends \
     libgstreamer1.0-0 \
     gstreamer1.0-libav \
@@ -78,6 +84,36 @@ RUN rm -rf /opt/qt-everywhere-src-5.12.0
 ENV PATH="/usr/local/qt5/bin:$PATH"
 # Add the libraries to the library path
 ENV LD_LIBRARY_PATH="/usr/local/qt5/lib:$LD_LIBRARY_PATH"
+
+# Install python3.9 with miniconda
+ENV PYTHON_VERSION="3.8"
+ENV CONDA_PATH="/usr/local/anaconda3"
+RUN wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh && \
+    sudo sh Miniconda3-latest-Linux-x86_64.sh -b -p ${CONDA_PATH} && \
+    # sudo ${CONDA_PATH}/bin/conda update -n base conda && \
+    sudo ${CONDA_PATH}/bin/conda install python=${PYTHON_VERSION} && \
+    sudo ${CONDA_PATH}/bin/conda clean -y -a && \
+    rm -rf Miniconda3-latest-Linux-x86_64.sh && \
+    rm -rf /temp/*
+ENV PATH=${CONDA_PATH}/bin:$PATH
+
+# Install PyQt5.12.0
+RUN pip install --upgrade pip
+RUN pip install pyqt5==5.12.0
+
+# Would cause issue:
+#   Cannot mix incompatible Qt library (version 0x50c00) with this library (version 0x50c01)
+#
+# Qt path
+#   ENV PATH="/usr/local/qt5/bin:$PATH"
+#   ENV LD_LIBRARY_PATH="/usr/local/qt5/lib:$LD_LIBRARY_PATH"
+# So we need to unset `LD_LIBRARY_PATH`
+ENV LD_LIBRARY_PATH=""
+
+# libQt5MultimediaQuick.so.5: cannot open shared object file: No such file or directory
+# ref: https://stackoverflow.com/questions/61426174/libqt5multimediaquick-so-5-cannot-open-shared-object-file-no-such-file-or-dire
+# RUN sudo cp /usr/local/qt5/lib/libQt5MultimediaQuick.so.5  \
+#     /home/user/.local/lib/python${PYTHON_VERSION}/site-packages/PyQt5/Qt5/lib/
 
 # nvidia-container-runtime
 ## can run OpenGL in Container
