@@ -50,7 +50,7 @@ Please install Qt/QML on your local machine.
 
 Chose the version that you want to use.
 
-#####　QML
+##### QML
 
 ```sh
 $ cd python/pyqt5/qml
