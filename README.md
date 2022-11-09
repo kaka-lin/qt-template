@@ -90,7 +90,7 @@ Applications that build with `Qt`, you can reference projects as below,
 
         Embedding `Matplotlib` in Qt
 
-    - [audio-tools](https://github.com/kaka-lin/audio-tools)
+    - [audio-analysis-tools](https://github.com/kaka-lin/audio-analysis-tools)
 
         Embedding `Matplotlib` in Qt
 
