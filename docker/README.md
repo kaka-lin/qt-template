@@ -124,3 +124,19 @@ Reference: [X11 in docker on macOS](https://gist.github.com/cschiewek/246a244ba2
         ```
         comment `conda update -n base conda`
         ```
+
+    2022/12/6 update:  If the old command has error, we can replace it as below:
+
+    ```dockerfile
+    # Install miniconda for python 3.8
+    ENV PYTHON_VERSION="3.8"
+    ENV CONDA_PATH="/usr/local/anaconda3"
+    ENV MINICONDA_FILE="Miniconda3-py38_4.12.0-Linux-x86_64.sh"
+    RUN wget https://repo.continuum.io/miniconda/${MINICONDA_FILE} && \
+        sh ${MINICONDA_FILE} -b -p ${CONDA_PATH} && \
+        ${CONDA_PATH}/bin/conda update -n base conda && \
+        ${CONDA_PATH}/bin/conda install python=${PYTHON_VERSION} && \
+        ${CONDA_PATH}/bin/conda clean -y -a && \
+        rm -rf ${MINICONDA_FILE} && \
+        rm -rf /temp/*
+    ```
