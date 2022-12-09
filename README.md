@@ -73,6 +73,7 @@ $ python3 main.py
 Applications that build with `Qt`, you can reference projects as below,
 
 - Qt5/QML
+    - [YUV Player](https://github.com/kaka-lin/YUVPlayer)
     - [Qt Video Player](https://github.com/kaka-lin/qt-video-player)
     - [Network Configuration Tool](https://github.com/kaka-lin/network-configuration-tool)
 
