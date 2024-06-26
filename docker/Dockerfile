@@ -35,7 +35,17 @@ RUN apt-get update && \
     libgstreamer-plugins-bad1.0-dev \
     mesa-common-dev libgl1-mesa-dev
 
-# OpenGL support
+# OpenGL support: GLUT / GLFW / GLEW support
+# mesa-utils: provides glxgears and glxinfo
+# x11-apps: provides xeyes
+RUN apt-get install -y --no-install-recommends \
+    x11-apps \
+    mesa-utils \
+    freeglut3-dev \
+    libglfw3-dev \
+    libglew-dev
+
+# GStreamer support
 RUN apt-get install -y --no-install-recommends \
     libgstreamer1.0-0 \
     gstreamer1.0-libav \
@@ -68,7 +78,7 @@ ENV LC_ALL C.UTF-8
 
 # Download Qt5.12.0
 RUN cd /opt && \
-    wget http://download.qt.io/official_releases/qt/5.12/5.12.0/single/qt-everywhere-src-5.12.0.tar.xz && \
+    wget https://download.qt.io/archive/qt/5.12/5.12.0/single/qt-everywhere-src-5.12.0.tar.xz && \
     tar Jxvf qt-everywhere-src-5.12.0.tar.xz && \
     rm -rf qt-everywhere-src-5.12.0.tar.xz && \
     cd /opt/qt-everywhere-src-5.12.0 &&\
