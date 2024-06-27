@@ -39,7 +39,7 @@ Or you can build it from scratch, please check the document in the [docker folde
 And then running with docker:
 
 ```bash
-$ ./run.sh
+$ ./docker-run.sh
 ```
 
 ### 2. Run with local Qt
