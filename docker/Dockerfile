@@ -35,16 +35,6 @@ RUN apt-get update && \
     libgstreamer-plugins-bad1.0-dev \
     mesa-common-dev libgl1-mesa-dev
 
-# OpenGL support: GLUT / GLFW / GLEW support
-# mesa-utils: provides glxgears and glxinfo
-# x11-apps: provides xeyes
-RUN apt-get install -y --no-install-recommends \
-    x11-apps \
-    mesa-utils \
-    freeglut3-dev \
-    libglfw3-dev \
-    libglew-dev
-
 # GStreamer support
 RUN apt-get install -y --no-install-recommends \
     libgstreamer1.0-0 \
@@ -60,6 +50,16 @@ RUN apt-get install -y --no-install-recommends \
     alsa-base \
     alsa-utils \
     pulseaudio
+
+# OpenGL support: GLUT / GLFW / GLEW support
+# mesa-utils: provides glxgears and glxinfo
+# x11-apps: provides xeyes
+RUN apt-get install -y --no-install-recommends \
+    x11-apps \
+    mesa-utils \
+    freeglut3-dev \
+    libglfw3-dev \
+    libglew-dev
 
 RUN apt -y autoremove && \
     apt -y autoclean && \
@@ -97,13 +97,16 @@ ENV LD_LIBRARY_PATH="/usr/local/qt5/lib:$LD_LIBRARY_PATH"
 
 # Install python3.9 with miniconda
 ENV PYTHON_VERSION="3.8"
-ENV CONDA_PATH="/usr/local/anaconda3"
-RUN wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh && \
-    sudo sh Miniconda3-latest-Linux-x86_64.sh -b -p ${CONDA_PATH} && \
+ENV CONDA_PATH="/opt/conda"
+# PLATFORM=$(uname -m) && echo "export PLATFORM=${PLATFORM}" >> ~/.bashrc
+ENV PLATFORM="x86_64"
+RUN DOWNLOAD_PATH="https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-${PLATFORM}.sh" && \
+    wget ${DOWNLOAD_PATH} && \
+    sudo sh Miniconda3-latest-Linux-${PLATFORM}.sh -b -p ${CONDA_PATH} && \
     # sudo ${CONDA_PATH}/bin/conda update -n base conda && \
     sudo ${CONDA_PATH}/bin/conda install python=${PYTHON_VERSION} && \
     sudo ${CONDA_PATH}/bin/conda clean -y -a && \
-    rm -rf Miniconda3-latest-Linux-x86_64.sh && \
+    rm -rf Miniconda3-latest-Linux-${PLATFORM}.sh && \
     rm -rf /temp/*
 ENV PATH=${CONDA_PATH}/bin:$PATH
 
@@ -138,10 +141,16 @@ ENV LIBGL_ALWAYS_INDIRECT 1
 ## To fix: QGLXContext: Failed to create dummy context
 #ENV QT_QUICK_BACKEND software
 
-# Add group & user + sudo
+# 添加群組和用戶，並賦予 sudo 權限
+#   1. 創建名為 user 的系統群組。
+#   2. 創建一個名為 user 的新用戶，並將該用戶分配到 user 群組以及 audio 和 video 補充群組。
+#   3. 添加 sudoers 文件，使 user 用戶無需密碼即可使用 sudo。
+#   4. 設置 sudoers 文件的正確權限。
+#   5. 更改用戶主目錄的所有權為 user。
 RUN groupadd -r user && \
     useradd -m -g user -G audio,video user && \
     echo 'user ALL=(ALL) NOPASSWD: ALL' > /etc/sudoers.d/user && \
+    chmod 0440 /etc/sudoers.d/user && \
     chown -R user:user /home/user
 
 USER user
