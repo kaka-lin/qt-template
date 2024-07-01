@@ -130,6 +130,11 @@ ENV LD_LIBRARY_PATH=""
 
 # nvidia-container-runtime
 ## can run OpenGL in Container
+##   - compute: Enables CUDA compute capabilities.
+##   - utility: Enables NVIDIA driver utility capabilities, like nvidia-smi.
+##   - graphics: Allows access to the GPU's graphics capabilities.
+##   - video: Enables video processing features.
+##   - display: Provides access to GPU display features.
 ENV NVIDIA_VISIBLE_DEVICES \
     ${NVIDIA_VISIBLE_DEVICES:-all}
 ENV NVIDIA_DRIVER_CAPABILITIES \
@@ -140,19 +145,3 @@ ENV NVIDIA_DRIVER_CAPABILITIES \
 ENV LIBGL_ALWAYS_INDIRECT 1
 ## To fix: QGLXContext: Failed to create dummy context
 #ENV QT_QUICK_BACKEND software
-
-# 添加群組和用戶，並賦予 sudo 權限
-#   1. 創建名為 user 的系統群組。
-#   2. 創建一個名為 user 的新用戶，並將該用戶分配到 user 群組以及 audio 和 video 補充群組。
-#   3. 添加 sudoers 文件，使 user 用戶無需密碼即可使用 sudo。
-#   4. 設置 sudoers 文件的正確權限。
-#   5. 更改用戶主目錄的所有權為 user。
-RUN groupadd -r user && \
-    useradd -m -g user -G audio,video user && \
-    echo 'user ALL=(ALL) NOPASSWD: ALL' > /etc/sudoers.d/user && \
-    chmod 0440 /etc/sudoers.d/user && \
-    chown -R user:user /home/user
-
-USER user
-WORKDIR /home/user
-ENV HOME /home/user

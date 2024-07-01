@@ -2,7 +2,7 @@
 
 XSOCK=/tmp/.X11-unix
 # change the XAUTH to your own .Xauthority file
-XAUTH=/home/user/.Xauthority
+XAUTH=/root/.Xauthority
 
 DOCKER_REPO=kakalin/
 BRAND=qt
@@ -32,8 +32,8 @@ docker_run_params=$(cat <<-END
     -v $XSOCK:$XSOCK \
     -v $HOME/.Xauthority:$XAUTH \
     --network=host \
-    -v $PWD:/home/user/$PROJECT_FOLDER \
-    -w /home/user/$PROJECT_FOLDER \
+    -v $PWD:/root/$PROJECT_FOLDER \
+    -w /root/$PROJECT_FOLDER \
     --privileged \
     $IMAGE_NAME
 END
