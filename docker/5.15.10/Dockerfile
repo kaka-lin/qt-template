@@ -113,16 +113,32 @@ ENV PLATFORM="x86_64"
 RUN DOWNLOAD_PATH="https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-${PLATFORM}.sh" && \
     wget ${DOWNLOAD_PATH} && \
     sudo sh Miniconda3-latest-Linux-${PLATFORM}.sh -b -p ${CONDA_PATH} && \
-    # sudo ${CONDA_PATH}/bin/conda update -n base conda && \
+    sudo ${CONDA_PATH}/bin/conda update -n base conda && \
     sudo ${CONDA_PATH}/bin/conda install python=${PYTHON_VERSION} && \
     sudo ${CONDA_PATH}/bin/conda clean -y -a && \
+    # init conda for bash and reload the environment
+    # Because you nedd run 'conda init' before 'conda activate' in the Dockerfile
+    #
+    # Enable conda for the for all users (conda initialize)
+    ln -s ${CONDA_PATH}/etc/profile.d/conda.sh /etc/profile.d/conda.sh && \
+    # Enable conda for the current user (conda initialize)
+    echo ". /opt/conda/etc/profile.d/conda.sh" >> ~/.bashrc && \
+    echo "conda activate py310" >> ~/.bashrc && \
     rm -rf Miniconda3-latest-Linux-${PLATFORM}.sh && \
     rm -rf /temp/*
+
 ENV PATH=${CONDA_PATH}/bin:$PATH
 
-# Install PyQt 5.15.10
-RUN pip install --upgrade pip
-RUN pip install pyqt5==5.15.10
+# Make RUN commands use `bash --login`:
+SHELL [ "bin/bash","--login","-c" ]
+
+# Install PyQt5 and PySide2
+# Create env py310 for fix error:
+#  ImportError: /usr/lib/x86_64-linux-gnu/libgssapi_krb5.so.2: symbol krb5_ser_context_init version krb5_3_MIT not defined in file libkrb5.so.3 with link time reference
+RUN conda create -n py310 python=${PYTHON_VERSION}
+RUN conda activate py310 && \
+    pip install --upgrade pip && \
+    pip install pyqt5==5.15.10 pyside2==5.15.2.1
 
 # Would cause issue:
 #   Cannot mix incompatible Qt library (version 0x50c00) with this library (version 0x50c01)

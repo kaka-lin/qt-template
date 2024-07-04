@@ -6,7 +6,7 @@ XAUTH=/root/.Xauthority
 
 DOCKER_REPO=kakalin/
 BRAND=qt
-VERSION=5.12.0
+VERSION=5.15.10
 IMAGE_NAME=${DOCKER_REPO}${BRAND}:${VERSION}
 
 # https://stackoverflow.com/questions/3162385/how-to-split-a-string-in-shell-and-get-the-last-field
@@ -39,6 +39,12 @@ docker_run_params=$(cat <<-END
 END
 )
 
+# xhost 開放權限
+## on Local machine
+xhost +localhost # for macOS
+xhost +local:docker # for Linux
+## on Remote machine
+# xhost + # or xhost +<specific ip>
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
     GPU=$(lspci | grep -i '.* vga .* nvidia .*')
     if [[ $GPU == *' NVIDIA '* ]]; then
