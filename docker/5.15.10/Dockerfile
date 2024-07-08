@@ -138,7 +138,7 @@ SHELL [ "bin/bash","--login","-c" ]
 RUN conda create -n py310 python=${PYTHON_VERSION}
 RUN conda activate py310 && \
     pip install --upgrade pip && \
-    pip install pyqt5==5.15.10 pyside2==5.15.2.1
+    pip install pyqt5==5.15.10 pyside2==5.15.2.1 PyOpenGL
 
 # Would cause issue:
 #   Cannot mix incompatible Qt library (version 0x50c00) with this library (version 0x50c01)
